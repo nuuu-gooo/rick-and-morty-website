@@ -1,6 +1,22 @@
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useState, useEffect } from "react";
 import { GLobalContext } from "./GlobalContext";
+import { public_axios } from "../../utils/API/publicAxios";
 
 export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
-  return <GLobalContext.Provider value={{}}>{children}</GLobalContext.Provider>;
+  const [allCharacters, setAlLCharacters] = useState<any[]>([]);
+
+  const getAllCharacters = async () => {
+    const resp = await public_axios.get("/character");
+    setAlLCharacters(resp.data.results);
+  };
+
+  useEffect(() => {
+    getAllCharacters();
+  }, []);
+
+  return (
+    <GLobalContext.Provider value={{ allCharacters, setAlLCharacters }}>
+      {children}
+    </GLobalContext.Provider>
+  );
 };
