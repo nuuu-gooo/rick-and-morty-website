@@ -1,6 +1,6 @@
 # Rick and Morty Universe Explorer
 
-Welcome to the **Rick and Morty Universe Explorer**! This web app allows users to explore characters, episodes, and locations from the _Rick and Morty_.
+Welcome to the **Rick and Morty Universe Explorer**! This web app allows users to explore characters, episodes, and locations from the _Rick and Morty_ TV Show
 
 ## Features
 
