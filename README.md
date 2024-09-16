@@ -1,28 +1,19 @@
-# React + TypeScript + Vite
+# Rick and Morty Universe Explorer
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the **Rick and Morty Universe Explorer**! This web app allows users to explore characters, episodes, and locations from the _Rick and Morty_.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Character Explorer**: Browse through all characters, view details like species, origin, and current status.
+- **Episode Guide**: Check out all episodes with information such as air date, episode number, and featured characters.
+- **Location Finder**: Discover various locations within the Rick and Morty universe and see which characters reside there.
+- **Search Functionality**: Easily search for specific characters, episodes, or locations.
+- **Responsive Design**: Optimized for both desktop and mobile viewing.
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
-# rick-and-morty-website
+- HTML, CSS, JAVASCRIPT
+- REACT JS - Frontend library for building UI components
+- AXIOS - For making HTTP requests to the Rick and Morty API
+- REACT ROUTER-DOM - For managing routing and navigation
+- TAILWIND CSS - for interactive UI
