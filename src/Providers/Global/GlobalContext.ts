@@ -21,9 +21,9 @@ interface TGlobalContext {
   setLiveStatus: React.Dispatch<React.SetStateAction<string>>;
   setLoadingGeneral: React.Dispatch<React.SetStateAction<boolean>>;
   allCharacters: any[];
+  loadingGeneral: boolean;
   gender: string;
   liveStatus: string;
   characterName: string;
-  loadingGeneral: boolean;
   resetAllSelectors: () => void;
 }
