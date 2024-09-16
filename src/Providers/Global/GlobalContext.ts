@@ -5,10 +5,13 @@ export const GLobalContext = createContext<TGlobalContext>({
   setLiveStatus: () => {},
   setGenderStatus: () => {},
   setCharacterName: () => {},
+  resetAllSelectors: () => {},
+  setLoadingGeneral: () => {},
   allCharacters: [],
   gender: "",
   liveStatus: "",
   characterName: "",
+  loadingGeneral: false,
 });
 
 interface TGlobalContext {
@@ -16,8 +19,11 @@ interface TGlobalContext {
   setCharacterName: React.Dispatch<React.SetStateAction<string>>;
   setGenderStatus: React.Dispatch<React.SetStateAction<string>>;
   setLiveStatus: React.Dispatch<React.SetStateAction<string>>;
+  setLoadingGeneral: React.Dispatch<React.SetStateAction<boolean>>;
   allCharacters: any[];
   gender: string;
   liveStatus: string;
   characterName: string;
+  loadingGeneral: boolean;
+  resetAllSelectors: () => void;
 }

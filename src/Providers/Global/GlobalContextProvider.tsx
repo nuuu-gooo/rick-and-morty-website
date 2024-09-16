@@ -7,23 +7,41 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   const [liveStatus, setLiveStatus] = useState<string>("");
   const [gender, setGenderStatus] = useState<string>("");
   const [characterName, setCharacterName] = useState<string>("");
+  const [loadingGeneral, setLoadingGeneral] = useState<boolean>(false);
 
   const getAllCharacters = async () => {
-    const resp = await public_axios.get(
-      `/character/?name=${characterName}&status=${liveStatus}&gender=${gender}`
-    );
-    setAlLCharacters(resp.data.results);
+    try {
+      setLoadingGeneral(true);
+      const resp = await public_axios.get(
+        `/character/?name=${characterName}&status=${liveStatus}&gender=${gender}`
+      );
+      setAlLCharacters(resp.data.results);
+    } catch (error: any) {
+      console.log(error.message);
+    } finally {
+      setLoadingGeneral(false);
+    }
   };
 
   console.log(allCharacters);
 
   useEffect(() => {
-    getAllCharacters();
-  }, [allCharacters, liveStatus, gender, characterName]);
+    if (allCharacters) {
+      getAllCharacters();
+    }
+  }, [liveStatus, gender, characterName]);
+
+  const resetAllSelectors = () => {
+    setLiveStatus("");
+    setGenderStatus("");
+    setCharacterName("");
+  };
 
   return (
     <GLobalContext.Provider
       value={{
+        setLoadingGeneral,
+        loadingGeneral,
         allCharacters,
         setAlLCharacters,
         setLiveStatus,
@@ -32,6 +50,7 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
         gender,
         liveStatus,
         characterName,
+        resetAllSelectors,
       }}
     >
       {children}

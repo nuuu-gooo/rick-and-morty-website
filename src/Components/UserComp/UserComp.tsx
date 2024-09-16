@@ -1,0 +1,36 @@
+import React, { useContext } from "react";
+import { Card } from "antd";
+import { GLobalContext } from "../../Providers/Global/GlobalContext";
+import { useNavigate } from "react-router-dom";
+
+//@ts-ignore
+export const UserComp = ({ character }): any[] => {
+  const navigate = useNavigate();
+  const { loadingGeneral } = useContext(GLobalContext);
+  const handleOnClick = (id: string) => {
+    navigate(`/singleCharacter/${id}`);
+  };
+  //@ts-ignore
+  return (
+    <div>
+      {loadingGeneral && (
+        <div>
+          <p>Loading...</p>
+        </div>
+      )}
+      <Card
+        onClick={() => {
+          handleOnClick(character.id);
+        }}
+        className="shadow-md shadow-black"
+        cover={<img src={character.image}></img>}
+        bordered={false}
+        style={{ width: 300 }}
+      >
+        <h3>{character.name}</h3>
+        <p>{character.status}</p>
+        <p>{character.species}</p>
+      </Card>
+    </div>
+  );
+};

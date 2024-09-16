@@ -1,37 +1,27 @@
 import React, { useContext, useState } from "react";
 import MainRickMortyPic from "../../assets/rick-and-morty-main-logo.svg";
 import { GLobalContext } from "../../Providers/Global/GlobalContext";
-import { Card } from "antd";
 import { PaginationComp } from "../../Components/Pagination/PaginationComp";
+import { UserComp } from "../../Components/UserComp/UserComp";
+import { gendersArr, liveStatusArr } from "../../utils/API/Data/Data";
 
 export const Home = () => {
   const {
     allCharacters,
     setCharacterName,
-    characterName,
-    liveStatus,
     setLiveStatus,
     setGenderStatus,
-    gender,
+    resetAllSelectors,
   } = useContext(GLobalContext);
   const [charactersPerPage, setCharactersPerPage] = useState<number>(6);
   const [currentPage, setCurrentPage] = useState<number>(1);
-
-  console.log(gender, liveStatus, characterName);
-
   const lastItemIndex = currentPage * charactersPerPage;
   const startIndex = lastItemIndex - charactersPerPage;
   const currentItems = allCharacters.slice(startIndex, lastItemIndex);
-
-  const resetAllSelectors = () => {
-    setLiveStatus("");
-    setGenderStatus("");
-    setCharacterName("");
-  };
   return (
     <div>
       <div className="flex justify-center items-center flex-col">
-        <div className="inner-container flex flex-col">
+        <div className="inner-container flex flex-col justify-center items-center">
           <div className="flex justify-center items-center">
             <img className="w-80%]" src={MainRickMortyPic} alt="" />
           </div>
@@ -46,18 +36,17 @@ export const Home = () => {
               onChange={(e) => setLiveStatus(e.target.value)}
               className="p-2 rounded-md outline-none w-full mr-3 cursor-pointer"
             >
-              <option value="alive">Alive</option>
-              <option value="dead">Dead</option>
-              <option value="unknown">Unkknown</option>
+              {liveStatusArr.map((status) => {
+                return <option value={status.name}>{status.name}</option>;
+              })}
             </select>
             <select
               onChange={(e) => setGenderStatus(e.target.value)}
               className="p-2 rounded-md outline-none w-full mr-3 cursor-pointer"
             >
-              <option value="male">Male</option>
-              <option value="female">Female</option>
-              <option value="Genderless">Genderless</option>
-              <option value="unknown">Unkknown</option>
+              {gendersArr.map((gender) => {
+                return <option value={gender.name}>{gender.name}</option>;
+              })}
             </select>
             <button
               onClick={resetAllSelectors}
@@ -67,21 +56,12 @@ export const Home = () => {
             </button>
           </div>
           <div className="characters mt-[10%] ">
-            <div className="grid grid-cols-3 gap-3   ">
-              {currentItems.map((character) => {
-                return (
-                  <Card
-                    className="shadow-md shadow-black"
-                    cover={<img src={character.image}></img>}
-                    bordered={false}
-                    style={{ width: 300 }}
-                  >
-                    <h3>{character.name}</h3>
-                    <p>{character.status}</p>
-                    <p>{character.species}</p>
-                  </Card>
-                );
-              })}
+            <div className="place-items-center">
+              <div className="grid grid-cols-3 gap-3            ">
+                {currentItems.map((character) => {
+                  return <UserComp character={character} />;
+                })}
+              </div>
             </div>
           </div>
         </div>

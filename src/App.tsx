@@ -5,6 +5,7 @@ import "./App.css";
 
 function App() {
   const HomePage = lazy(() => import("./Pages/Home"));
+  const SingleCharacterPage = lazy(() => import("./Pages/SingleCharacter"));
   return (
     <Suspense
       fallback={
@@ -15,6 +16,10 @@ function App() {
     >
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route
+          path="/singleCharacter/:singleCharacterId"
+          element={<SingleCharacterPage />}
+        />
       </Routes>
     </Suspense>
   );
