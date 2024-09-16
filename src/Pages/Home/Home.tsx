@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import MainRickMortyPic from "../../assets/rick-and-morty-main-logo.svg";
+import MainRickMortyPic from "../../assets/SVGS/rick-and-morty-main-logo.svg";
 import { GLobalContext } from "../../Providers/Global/GlobalContext";
 import { PaginationComp } from "../../Components/Pagination/PaginationComp";
 import { UserComp } from "../../Components/UserComp/UserComp";
