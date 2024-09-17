@@ -15,4 +15,5 @@ export interface TSingleUser {
   origin: TOrigin;
   type: string;
   location: TLocation;
+  id: number;
 }

@@ -4,6 +4,7 @@ import { GLobalContext } from "../../Providers/Global/GlobalContext";
 import { PaginationComp } from "../../Components/Pagination/PaginationComp";
 import { UserComp } from "../../Components/UserComp/UserComp";
 import { gendersArr, liveStatusArr } from "../../utils/Data/Data";
+import { TSingleUser } from "../../utils/@types/@types";
 
 export const Home = () => {
   const {
@@ -65,7 +66,7 @@ export const Home = () => {
           <div className="characters mt-[10%] ">
             <div className="place-items-center">
               <div className="grid grid-cols-3 gap-3            ">
-                {currentItems.map((character) => {
+                {currentItems.map((character: TSingleUser) => {
                   return <UserComp character={character} />;
                 })}
               </div>

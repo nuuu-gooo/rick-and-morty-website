@@ -8,7 +8,8 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   const [gender, setGenderStatus] = useState<string>("");
   const [characterName, setCharacterName] = useState<string>("");
   const [loadingGeneral, setLoadingGeneral] = useState<boolean>(false);
-  // const [singleCharacter, setSingleCharacter] = useState<string>("");
+  const [allEpisodes, setAllEpisodes] = useState<any[]>([]);
+  const [episodeName, setEpisodeName] = useState<string>("");
 
   const getAllCharacters = async () => {
     try {
@@ -24,18 +25,21 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
     }
   };
 
-  // const fetchSingleCharacter = async (singleCharacterId: string) => {
-  //   const resp = await public_axios.get(`/character/${singleCharacterId}`);
-  //   setSingleCharacter(resp.data);
-  // };
-  // console.log(singleCharacter);
+  const getAllEpisondes = async () => {
+    const resp = await public_axios.get(`/episode?name=${episodeName}`);
+    setAllEpisodes(resp.data.results);
+  };
+
+  useEffect(() => {
+    getAllEpisondes();
+    console.log(allEpisodes);
+  }, [episodeName]);
 
   useEffect(() => {
     if (allCharacters) {
       getAllCharacters();
     }
   }, [liveStatus, gender, characterName]);
-
   const resetAllSelectors = () => {
     setLiveStatus("");
     setGenderStatus("");
@@ -56,9 +60,9 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
         liveStatus,
         characterName,
         resetAllSelectors,
-        // setSingleCharacter,
-        // singleCharacter,
-        // fetchSingleCharacter,
+        allEpisodes,
+        setEpisodeName,
+        episodeName,
       }}
     >
       {children}

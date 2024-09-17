@@ -7,6 +7,7 @@ import GlobalLayout from "./Layouts/Global";
 function App() {
   const HomePage = lazy(() => import("./Pages/Home"));
   const SingleCharacterPage = lazy(() => import("./Pages/SingleCharacter"));
+  const EpsidoesPage = lazy(() => import("./Pages/EpisodesPage"));
   return (
     <Suspense
       fallback={
@@ -22,6 +23,7 @@ function App() {
             path="/singleCharacter/:singleCharacterId"
             element={<SingleCharacterPage />}
           />
+          <Route path="/allEpisodesPage" element={<EpsidoesPage />} />
         </Route>
       </Routes>
     </Suspense>

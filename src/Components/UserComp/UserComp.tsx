@@ -2,9 +2,10 @@ import React, { useContext } from "react";
 import { Card } from "antd";
 import { GLobalContext } from "../../Providers/Global/GlobalContext";
 import { useNavigate } from "react-router-dom";
+import { TSingleUser } from "../../utils/@types/@types";
 
 //@ts-ignore
-export const UserComp = ({ character }): any[] => {
+export const UserComp = ({ character }: any) => {
   const navigate = useNavigate();
   const { loadingGeneral } = useContext(GLobalContext);
   const handleOnClick = (id: string) => {
@@ -19,6 +20,7 @@ export const UserComp = ({ character }): any[] => {
         </div>
       )}
       <Card
+        key={character.id}
         onClick={() => {
           handleOnClick(character.id);
         }}

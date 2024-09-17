@@ -5,6 +5,9 @@ import { useNavigate } from "react-router-dom";
 export const Nav1 = () => {
   const navigate = useNavigate();
 
+  const hanldeNavigateToEpisodesPage = () => {
+    navigate("/allEpisodesPage");
+  };
   const handleOnClick = () => {
     navigate("/");
   };
@@ -25,7 +28,10 @@ export const Nav1 = () => {
             <button className="w-full ml-3 outline-none p-2 bg-transparent border-none hover:underline cursor-pointer">
               Locations
             </button>
-            <button className="w-full ml-3 outline-none p-2 bg-transparent border-none hover:underline cursor-pointer">
+            <button
+              onClick={hanldeNavigateToEpisodesPage}
+              className="w-full ml-3 outline-none p-2 bg-transparent border-none hover:underline cursor-pointer"
+            >
               Episodes
             </button>
           </div>
