@@ -11,7 +11,7 @@ export const Nav1 = () => {
   return (
     <div className="w-full  shadow-md">
       <div className="flex justify-center items-center p-3 w-[70%] m-auto  mt-3 rounded-md">
-        <nav className="flex justify-between w-full">
+        <nav className="flex justify-between w-full sticky">
           <div
             onClick={handleOnClick}
             className="left hover:underline cursor-pointer"

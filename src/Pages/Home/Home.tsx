@@ -18,6 +18,13 @@ export const Home = () => {
   const lastItemIndex = currentPage * charactersPerPage;
   const startIndex = lastItemIndex - charactersPerPage;
   const currentItems = allCharacters.slice(startIndex, lastItemIndex);
+
+  const moveToTop = () => {
+    window.scroll({
+      top: 100,
+      behavior: "smooth",
+    });
+  };
   return (
     <div>
       <div className="flex justify-center items-center flex-col">
@@ -65,7 +72,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div className="mt-[4%]">
+        <div onClick={moveToTop} className="mt-[4%]">
           <PaginationComp
             onChange={setCurrentPage}
             pageSize={charactersPerPage}
