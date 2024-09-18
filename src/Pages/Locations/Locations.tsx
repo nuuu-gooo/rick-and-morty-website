@@ -1,37 +1,40 @@
-import React, { useContext, useState } from "react";
-import EpisodesSVG from "../../assets/SVGS/episodes-rick-and-morty.svg";
+import React, { useContext } from "react";
+import LocationsSVG from "../../assets/SVGS/locations-main-img.svg";
 import { GLobalContext } from "../../Providers/Global/GlobalContext";
-import { Card } from "antd";
-import { SingleEpisodeComp } from "./SingleEpisodeComp/SingleEpisodeComp";
+import SingleLocationComp from "./SingleLocation";
 
-export const EpisodesPage = () => {
-  const { allEpisodes } = useContext(GLobalContext);
-  const { setEpisodeName, episodeName } = useContext(GLobalContext);
+export const Locations = () => {
+  const { setEpisodeName, allLocations, setLocationName } =
+    useContext(GLobalContext);
 
+  console.log(allLocations);
   return (
     <div className="flex justify-center items-center flex-col">
       <div className="mt-3 flex justify-center items-center flex-col">
         <img
           className="flex   items-center  justify-center w-[50%]"
-          src={EpisodesSVG}
+          src={LocationsSVG}
           alt=""
         />
         <div className="selectors mt-3 w-full flex items-center">
           <input
             onChange={(e) => {
-              setEpisodeName(e.target.value);
+              setLocationName(e.target.value);
             }}
             className="p-4  outline-none border   rounded-md mr-3 w-full"
-            placeholder="Filter by Episode"
+            placeholder="Filter by Name"
             type="text"
           />
         </div>
         <div className="characters mt-[10%] ">
           <div className="place-items-center">
             <div className="grid grid-cols-3 gap-3            ">
-              {allEpisodes.map((epsiode) => {
+              {allLocations?.map((location) => {
                 return (
-                  <SingleEpisodeComp key={epsiode.id} singleEpisode={epsiode} />
+                  <SingleLocationComp
+                    key={location.id}
+                    singleLocation={location}
+                  />
                 );
               })}
             </div>

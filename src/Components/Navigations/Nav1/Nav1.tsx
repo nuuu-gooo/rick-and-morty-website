@@ -8,6 +8,10 @@ export const Nav1 = () => {
   const hanldeNavigateToEpisodesPage = () => {
     navigate("/allEpisodesPage");
   };
+
+  const hanldeNavigateToLocationsPage = () => {
+    navigate("/allLocationsPage");
+  };
   const handleOnClick = () => {
     navigate("/");
   };
@@ -22,10 +26,16 @@ export const Nav1 = () => {
             <img src={MainNavLogo} alt="" />
           </div>
           <div className="right flex items-center w-[30%] ">
-            <button className="w-full mr-3 outline-none p-2 bg-transparent border-none hover:underline cursor-pointer">
+            <button
+              onClick={handleOnClick}
+              className="w-full mr-3 outline-none p-2 bg-transparent border-none hover:underline cursor-pointer"
+            >
               Home
             </button>
-            <button className="w-full ml-3 outline-none p-2 bg-transparent border-none hover:underline cursor-pointer">
+            <button
+              onClick={hanldeNavigateToLocationsPage}
+              className="w-full ml-3 outline-none p-2 bg-transparent border-none hover:underline cursor-pointer"
+            >
               Locations
             </button>
             <button

@@ -10,6 +10,10 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   const [loadingGeneral, setLoadingGeneral] = useState<boolean>(false);
   const [allEpisodes, setAllEpisodes] = useState<any[]>([]);
   const [episodeName, setEpisodeName] = useState<string>("");
+  const [allLocations, setAllLocations] = useState<any[]>([]);
+  const [locationName, setLocationName] = useState<string>("");
+
+  document.title = "Rick and Morty / TV SHOW";
 
   const getAllCharacters = async () => {
     try {
@@ -30,9 +34,23 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
     setAllEpisodes(resp.data.results);
   };
 
+  const getAllLocations = async () => {
+    const resp = await public_axios.get(`/location?name=${locationName}`);
+    setAllLocations(resp.data.results);
+  };
+
+  useEffect(() => {
+    getAllLocations();
+    if (allLocations) {
+      getAllLocations();
+    }
+  }, [locationName]);
+
   useEffect(() => {
     getAllEpisondes();
-    console.log(allEpisodes);
+    if (allEpisodes) {
+      getAllEpisondes();
+    }
   }, [episodeName]);
 
   useEffect(() => {
@@ -40,6 +58,7 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
       getAllCharacters();
     }
   }, [liveStatus, gender, characterName]);
+
   const resetAllSelectors = () => {
     setLiveStatus("");
     setGenderStatus("");
@@ -63,6 +82,9 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
         allEpisodes,
         setEpisodeName,
         episodeName,
+        setLocationName,
+        locationName,
+        allLocations,
       }}
     >
       {children}
