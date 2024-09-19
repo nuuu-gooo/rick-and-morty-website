@@ -52,7 +52,7 @@ export const rickAndMortyCharacters = [
       {
         name: "Evil Morthy",
         last_name: "",
-        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPWxkuSPFOW8cXUgUqO2h9Bc9rNGsrlRHo40ZP6wWU3frknwdsNnuU&s=0",
+        img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRMNVl7mZ-0_DlRFgGdPmSQdRltb5OvvpYjBjR5LmJoX8weOV76lKf3&s=0",
       },
       {
         name: "Diane",
