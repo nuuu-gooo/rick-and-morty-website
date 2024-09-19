@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from "react-router-dom";
 import { public_axios } from "../../../utils/API/publicAxios";
 import { Card } from "antd";
 import { FaArrowRight } from "react-icons/fa6";
+import { rickAndMortyCharacters } from "../../../utils/Data/Data";
 
 export const DynamicEpisode = () => {
   const [dynamicEpisode, setDynamicEpisode] = useState([]);
@@ -15,10 +16,13 @@ export const DynamicEpisode = () => {
   };
 
   useEffect(() => {
-    //@ts-ignore
+    // @ts-ignore
     fetchDynamicEpsiode(episodeId);
     console.log(dynamicEpisode);
   }, [episodeId]);
+  let randomCharacterNumber = Math.floor(
+    Math.random() * rickAndMortyCharacters.length
+  );
 
   return (
     <div className="flex justify-center items-center flex-col mt-[3%]">
@@ -44,20 +48,23 @@ export const DynamicEpisode = () => {
               <p className="mt-2">{dynamicEpisode.air_date}</p>
             </div>
           </div>
-          <div className="grid grid-cols-3 gap-3">
-            {dynamicEpisode?.characters?.map((character) => {
-              return (
-                <Link to={character}>
+          <div className="grid grid-cols-3 gap-5">
+            {rickAndMortyCharacters[randomCharacterNumber].characterArr.map(
+              (character) => {
+                return (
+                  // <Link className="no-underline hover:underline">
                   <Card
-                    className="shadow-md border-[#82FE66] border-solid shadow-black hover:shadow-md  hover:shadow-[#82FE66] hover:transition-all cursor-pointer hover:scale-[1.02] flex justify-center text-center  items-center p-5   "
+                    className="shadow-md border-[#82FE66] border-solid shadow-black hover:shadow-md  hover:shadow-[#82FE66] hover:transition-all cursor-not-allowed hover:scale-[1.02] flex justify-center text-center  items-center p-5  flex-col  no-underline hover:underline "
                     bordered={false}
                     style={{ width: 300 }}
+                    cover={<img className="w-full" src={character.img}></img>}
                   >
-                    <p>{character}</p>
+                    <p>{character.name}</p>
                   </Card>
-                </Link>
-              );
-            })}
+                  // </Link>
+                );
+              }
+            )}
           </div>
         </div>
       </div>

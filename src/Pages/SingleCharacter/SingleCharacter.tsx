@@ -13,6 +13,9 @@ export const SingleCharacter = () => {
     singleCharacterId: string | undefined
   ) => {
     const resp = await public_axios.get(`/character/${singleCharacterId}`);
+    // const resp = await public_axios.get(
+    //   `/character/?name=${singleCharacterId}`
+    // );
     setSingleCharacter(resp.data);
   };
   useEffect(() => {

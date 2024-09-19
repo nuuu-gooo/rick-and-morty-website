@@ -3,7 +3,11 @@ import MainRickMortyPic from "../../assets/SVGS/rick-and-morty-main-logo.svg";
 import { GLobalContext } from "../../Providers/Global/GlobalContext";
 import { PaginationComp } from "../../Components/Pagination/PaginationComp";
 import { UserComp } from "../../Components/UserComp/UserComp";
-import { gendersArr, liveStatusArr } from "../../utils/Data/Data";
+import {
+  gendersArr,
+  liveStatusArr,
+  rickAndMortyCharacters,
+} from "../../utils/Data/Data";
 import { TSingleUser } from "../../utils/@types/@types";
 
 export const Home = () => {
