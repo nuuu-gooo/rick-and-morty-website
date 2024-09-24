@@ -8,6 +8,7 @@ import { rickAndMortyCharacters } from "../../../utils/Data/Data";
 export const DynamicEpisode = () => {
   const [dynamicEpisode, setDynamicEpisode] = useState([]);
   const { episodeId } = useParams();
+
   const navigate = useNavigate();
   const fetchDynamicEpsiode = async (id: string) => {
     const resp = await public_axios.get(`/episode/${id}`);
@@ -54,6 +55,9 @@ export const DynamicEpisode = () => {
                 return (
                   // <Link className="no-underline hover:underline">
                   <Card
+                    onClick={() =>
+                      navigate(`/singleCharacter/${character.filterName}`)
+                    }
                     className="shadow-md border-[#82FE66] border-solid shadow-black hover:shadow-md  hover:shadow-[#82FE66] hover:transition-all cursor-not-allowed hover:scale-[1.02] flex justify-center text-center  items-center p-5  flex-col  no-underline hover:underline "
                     bordered={false}
                     style={{ width: 300 }}

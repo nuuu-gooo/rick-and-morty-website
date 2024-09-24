@@ -22,7 +22,7 @@ export const UserComp = ({ character }: any) => {
       <Card
         key={character.id}
         onClick={() => {
-          handleOnClick(character.id);
+          handleOnClick(character.name);
         }}
         className="shadow-md shadow-black hover:shadow-md  hover:shadow-[#82FE66] hover:transition-all cursor-pointer hover:scale-[1.02]"
         cover={<img src={character.image}></img>}

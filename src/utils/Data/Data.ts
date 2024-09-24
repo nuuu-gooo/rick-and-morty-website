@@ -92,7 +92,7 @@ export const rickAndMortyCharacters = [
       },
       {
         name: "The Devil",
-        filterName: "the devil",
+        filterName: "devil",
         last_name: "",
         img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS_RAj5mzDAw2yhtQCIIiKqwq5jrc6VlNpl-_7EciMTMkgcAPXnoRk-&s=0",
       },
