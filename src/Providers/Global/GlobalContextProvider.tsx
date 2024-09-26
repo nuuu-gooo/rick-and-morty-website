@@ -1,6 +1,7 @@
 import React, { PropsWithChildren, useState, useEffect } from "react";
 import { GLobalContext } from "./GlobalContext";
 import { public_axios } from "../../utils/API/publicAxios";
+import { Navigate, useAsyncError, useNavigate } from "react-router-dom";
 
 export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   const [allCharacters, setAlLCharacters] = useState<any[]>([]);
@@ -12,9 +13,21 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   const [episodeName, setEpisodeName] = useState<string>("");
   const [allLocations, setAllLocations] = useState<any[]>([]);
   const [locationName, setLocationName] = useState<string>("");
+  const [serverDownStatus, setServerDownStatus] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   document.title = "Rick and Morty / TV SHOW";
 
+  useEffect(() => {
+    if (allCharacters.length === 0) {
+      setServerDownStatus(true);
+    } else {
+      setServerDownStatus(false);
+      navigate("/");
+    }
+  }, [allCharacters.length, serverDownStatus]);
+
+  // allCharacters.length = 0;
   const getAllCharacters = async () => {
     try {
       setLoadingGeneral(true);
@@ -85,6 +98,8 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
         setLocationName,
         locationName,
         allLocations,
+        setServerDownStatus,
+        serverDownStatus,
       }}
     >
       {children}
