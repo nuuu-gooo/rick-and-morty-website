@@ -13,6 +13,8 @@ export const Home = () => {
     allCharacters,
     setCharacterName,
     setLiveStatus,
+    liveStatus,
+    gender,
     setGenderStatus,
     resetAllSelectors,
   } = useContext(GLobalContext);
@@ -50,7 +52,9 @@ export const Home = () => {
             />
             <select
               onChange={(e) => setLiveStatus(e.target.value)}
-              className="p-2 rounded-md outline-none w-full mr-3 cursor-pointer"
+              className={`p-2 rounded-md outline-none w-full mr-3 cursor-pointer  ${
+                liveStatus !== "" ? "bg-green-300" : "bg-white"
+              } `}
             >
               {liveStatusArr.map((status) => {
                 return <option value={status.name}>{status.name}</option>;
@@ -58,7 +62,9 @@ export const Home = () => {
             </select>
             <select
               onChange={(e) => setGenderStatus(e.target.value)}
-              className="p-2 rounded-md outline-none w-full mr-3 cursor-pointer"
+              className={`p-2 rounded-md outline-none w-full mr-3 cursor-pointer         ${
+                gender !== "" ? "bg-green-300" : "bg-white"
+              }  `}
             >
               {gendersArr.map((gender) => {
                 return <option value={gender.name}>{gender.name}</option>;

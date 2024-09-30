@@ -1,10 +1,12 @@
 export const liveStatusArr = [
+  { name: "Select a Status", id: 0 },
   { name: "dead", id: 1 },
   { name: "alive", id: 2 },
   { name: "unknown", id: 3 },
 ];
 
 export const gendersArr = [
+  { name: "Select a Gender", id: 0 },
   { name: "male", id: 1 },
   { name: "female", id: 2 },
   { name: "unknown", id: 3 },
