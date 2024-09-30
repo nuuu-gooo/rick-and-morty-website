@@ -30,6 +30,8 @@ export const Home = () => {
     setSelectorModalStatus(false);
   };
 
+  console.log(liveStatus);
+
   const moveToTop = () => {
     window.scroll({
       top: 100,
@@ -50,11 +52,13 @@ export const Home = () => {
               placeholder="Filter by Name"
               type="text"
             />
+
             <select
               onChange={(e) => setLiveStatus(e.target.value)}
-              className={`p-2 rounded-md outline-none w-full mr-3 cursor-pointer  ${
-                liveStatus !== "" ? "bg-green-300" : "bg-white"
-              } `}
+              className={`p-2 rounded-md outline-none w-full mr-3 cursor-pointer ${
+                liveStatus === "Select a Status" &&
+                `bg-white ${setLiveStatus("")} `
+              }   ${liveStatus !== "" ? "bg-green-300" : `bg-white`} `}
             >
               {liveStatusArr.map((status) => {
                 return <option value={status.name}>{status.name}</option>;
@@ -62,9 +66,10 @@ export const Home = () => {
             </select>
             <select
               onChange={(e) => setGenderStatus(e.target.value)}
-              className={`p-2 rounded-md outline-none w-full mr-3 cursor-pointer         ${
-                gender !== "" ? "bg-green-300" : "bg-white"
-              }  `}
+              className={`p-2 rounded-md outline-none w-full mr-3 cursor-pointer ${
+                gender === "Select a Gender" &&
+                `bg-white ${setGenderStatus("")}`
+              }          ${gender !== "" ? "bg-green-300" : "bg-white"}  `}
             >
               {gendersArr.map((gender) => {
                 return <option value={gender.name}>{gender.name}</option>;
