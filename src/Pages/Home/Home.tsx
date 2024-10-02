@@ -22,6 +22,7 @@ export const Home = () => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const lastItemIndex = currentPage * charactersPerPage;
   const startIndex = lastItemIndex - charactersPerPage;
+  const [redResetStatus, setRedResetStatus] = useState<boolean>(false);
   const currentItems = allCharacters.slice(startIndex, lastItemIndex);
   const [selectorModalStatus, setSelectorModalStatus] =
     useState<boolean>(false);
@@ -29,8 +30,15 @@ export const Home = () => {
   const closeModal = () => {
     setSelectorModalStatus(false);
   };
+  const redReset = async () => {
+    setRedResetStatus(true);
+    setTimeout(() => {
+      setRedResetStatus(false);
+    }, 1000);
+  };
 
   console.log(liveStatus);
+  const isValid = liveStatus !== "" || gender !== "";
 
   const moveToTop = () => {
     window.scroll({
@@ -76,8 +84,14 @@ export const Home = () => {
               })}
             </select>
             <button
-              onClick={resetAllSelectors}
-              className="w-full p-2  rounded-md bg-transparent border  cursor-pointer hover:shadow-md shadow-black hover:transition-all"
+              disabled={!isValid}
+              onClick={() => {
+                resetAllSelectors();
+                redReset();
+              }}
+              className={`w-full p-2  rounded-md bg-transparent border  cursor-pointer hover:shadow-md shadow-black hover:transition-all ${
+                redResetStatus ? "bg-[red] text-white" : ""
+              }`}
             >
               Reset
             </button>
