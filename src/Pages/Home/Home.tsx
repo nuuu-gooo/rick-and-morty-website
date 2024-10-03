@@ -24,6 +24,7 @@ export const Home = () => {
   const startIndex = lastItemIndex - charactersPerPage;
   const [redResetStatus, setRedResetStatus] = useState<boolean>(false);
   const currentItems = allCharacters.slice(startIndex, lastItemIndex);
+  const { darkModeStatus } = useContext(GLobalContext);
   const [selectorModalStatus, setSelectorModalStatus] =
     useState<boolean>(false);
 
@@ -48,7 +49,11 @@ export const Home = () => {
   };
   return (
     <div>
-      <div className="flex justify-center items-center flex-col">
+      <div
+        className={`flex justify-center items-center flex-col ${
+          darkModeStatus && "bg-black text-white"
+        } `}
+      >
         <div className="inner-container flex flex-col justify-center items-center">
           <div className="flex justify-center items-center">
             <img className="w-80%]" src={MainRickMortyPic} alt="" />
@@ -143,7 +148,7 @@ export const Home = () => {
             </div>
           </div>
         </div>
-        <div onClick={moveToTop} className="mt-[4%]">
+        <div onClick={moveToTop} className="mt-[4%] mb-5">
           <PaginationComp
             onChange={setCurrentPage}
             pageSize={charactersPerPage}

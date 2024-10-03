@@ -14,9 +14,12 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   const [allLocations, setAllLocations] = useState<any[]>([]);
   const [locationName, setLocationName] = useState<string>("");
   const [serverDownStatus, setServerDownStatus] = useState<boolean>(false);
+  const [darkModeStatus, setDarkModeStatus] = useState<boolean>(false);
   const navigate = useNavigate();
 
   document.title = "Rick and Morty / TV SHOW";
+
+  document.body.style.background = `${darkModeStatus && "bg-black"}`;
 
   useEffect(() => {
     if (allCharacters.length === 0) {
@@ -100,6 +103,8 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
         allLocations,
         setServerDownStatus,
         serverDownStatus,
+        setDarkModeStatus,
+        darkModeStatus,
       }}
     >
       {children}
