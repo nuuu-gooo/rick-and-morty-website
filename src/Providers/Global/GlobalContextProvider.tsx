@@ -16,6 +16,7 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   const [serverDownStatus, setServerDownStatus] = useState<boolean>(false);
   const [darkModeStatus, setDarkModeStatus] = useState<boolean>(false);
   const navigate = useNavigate();
+  const [searchedCharacters, setSearchedCharacters] = useState<any[]>([]);
 
   document.title = "Rick and Morty / TV SHOW";
 
@@ -30,7 +31,6 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
     }
   }, [allCharacters.length, serverDownStatus]);
 
-  // allCharacters.length = 0;
   const getAllCharacters = async () => {
     try {
       setLoadingGeneral(true);
@@ -38,11 +38,29 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
         `/character/?name=${characterName}&status=${liveStatus}&gender=${gender}`
       );
       setAlLCharacters(resp.data.results);
+
+      if (characterName !== "") {
+        setSearchedCharacters(resp.data.results);
+      } else {
+        setSearchedCharacters([]);
+      }
     } catch (error: any) {
       console.log(error.message);
     } finally {
       setLoadingGeneral(false);
     }
+
+    // try {
+    //   setLoadingGeneral(true);
+    //   const resp = await public_axios.get(
+    //     `/character/?name=${characterName}&status=${liveStatus}&gender=${gender}`
+    //   );
+    //   setAlLCharacters(resp.data.results);
+    // } catch (error: any) {
+    //   console.log(error.message);
+    // } finally {
+    //   setLoadingGeneral(false);
+    // }
   };
 
   const getAllEpisondes = async () => {
@@ -69,6 +87,20 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
     }
   }, [episodeName]);
 
+  const getAllCharactersFunction = async (e: any) => {
+    if (e.target.key) {
+      useEffect(() => {
+        if (allCharacters) {
+          getAllCharacters();
+        }
+      }, [liveStatus, gender, characterName]);
+    }
+    // useEffect(() => {
+    //   if (allCharacters) {
+    //     getAllCharacters(characterName);
+    //   }
+    // }, [liveStatus, gender, characterName]);
+  };
   useEffect(() => {
     if (allCharacters) {
       getAllCharacters();
@@ -84,6 +116,7 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   return (
     <GLobalContext.Provider
       value={{
+        getAllCharactersFunction,
         setLoadingGeneral,
         loadingGeneral,
         allCharacters,
@@ -105,6 +138,7 @@ export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
         serverDownStatus,
         setDarkModeStatus,
         darkModeStatus,
+        searchedCharacters,
       }}
     >
       {children}

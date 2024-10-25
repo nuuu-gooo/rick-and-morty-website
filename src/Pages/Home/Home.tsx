@@ -7,6 +7,8 @@ import { IoFilterSharp } from "react-icons/io5";
 import { gendersArr, liveStatusArr } from "../../utils/Data/Data";
 import { TSingleUser } from "../../utils/@types/@types";
 import { Modal, Button } from "antd";
+import { useNavigate } from "react-router-dom";
+import { EnterCharacterPage } from "../EnterCharacterPage/EnterCharacterPage";
 
 export const Home = () => {
   const {
@@ -17,16 +19,23 @@ export const Home = () => {
     gender,
     setGenderStatus,
     resetAllSelectors,
+    searchedCharacters,
+    // getAllCharactersFunction,
+    characterName,
   } = useContext(GLobalContext);
   const [charactersPerPage, setCharactersPerPage] = useState<number>(6);
+  const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const lastItemIndex = currentPage * charactersPerPage;
   const startIndex = lastItemIndex - charactersPerPage;
   const [redResetStatus, setRedResetStatus] = useState<boolean>(false);
   const currentItems = allCharacters.slice(startIndex, lastItemIndex);
   const { darkModeStatus } = useContext(GLobalContext);
+  const [key, setKey] = useState<string>("");
   const [selectorModalStatus, setSelectorModalStatus] =
     useState<boolean>(false);
+
+  // const navigateToEnterCharacterPage = () => {};
 
   const closeModal = () => {
     setSelectorModalStatus(false);
@@ -59,12 +68,35 @@ export const Home = () => {
             <img className="w-80%]" src={MainRickMortyPic} alt="" />
           </div>
           <div className=" hidden   selectors md:mt-3 w-full md:flex items-center">
-            <input
-              onChange={(e) => setCharacterName(e.target.value)}
-              className="p-2 outline-none border   rounded-md mr-3 w-full"
-              placeholder="Filter by Name"
-              type="text"
-            />
+            <div className="flex flex-col w-full mr-3">
+              <input
+                onKeyDown={(e: any) => {
+                  if (e.key === "Enter") {
+                    navigate(`/enterCharacter/${characterName}`);
+                  }
+                }}
+                onChange={(e) => {
+                  setCharacterName(e.target.value);
+                }}
+                className="p-2 outline-none border   rounded-md mr-3 w-full"
+                placeholder="Filter by Name"
+                type="text"
+              />
+              <div className="absolute  z-10 w-[40%] mt-[3%] overflow-scroll h-[100px] cursor-pointer">
+                {searchedCharacters.map((char) => {
+                  return (
+                    <div
+                      onClick={() => {
+                        navigate(`/singleCharacter/${char.name}`);
+                      }}
+                      className="flex text-start flex-col bg-black text-white p-2 border-solid w-full   overflow-scroll"
+                    >
+                      <p>{char.name}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
 
             <select
               onChange={(e) => setLiveStatus(e.target.value)}
@@ -109,6 +141,7 @@ export const Home = () => {
           </button>
           <Modal onCancel={closeModal} open={selectorModalStatus}>
             <input
+              // onClick={() => navigateToEnterCharacterPage(characterName)}
               onChange={(e) => setCharacterName(e.target.value)}
               className="p-2 outline-none border   rounded-md mr-3 w-full"
               placeholder="Filter by Name"

@@ -11,9 +11,11 @@ export const GLobalContext = createContext<TGlobalContext>({
   setLocationName: () => {},
   setServerDownStatus: () => {},
   setDarkModeStatus: () => {},
+  getAllCharactersFunction: async () => {},
   allLocations: [],
   allCharacters: [],
   allEpisodes: [],
+  searchedCharacters: [],
   gender: "",
   liveStatus: "",
   characterName: "",
@@ -45,5 +47,7 @@ interface TGlobalContext {
   characterName: string;
   episodeName: string;
   locationName: string;
+  searchedCharacters: any[];
+  getAllCharactersFunction: (e: any) => Promise<void>;
   resetAllSelectors: () => void;
 }
