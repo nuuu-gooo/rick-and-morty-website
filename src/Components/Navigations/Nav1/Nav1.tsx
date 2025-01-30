@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import MainNavLogo from "../../../assets/SVGS/nav-logo.svg";
 import { useNavigate } from "react-router-dom";
 import { GLobalContext } from "../../../Providers/Global/GlobalContext";

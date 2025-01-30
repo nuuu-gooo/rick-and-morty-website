@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import LocationsSVG from "../../assets/SVGS/locations-main-img.svg";
 import { GLobalContext } from "../../Providers/Global/GlobalContext";
 import SingleLocationComp from "./SingleLocation";
 
 export const Locations = () => {
-  const { setEpisodeName, allLocations, setLocationName } =
-    useContext(GLobalContext);
+  const { allLocations, setLocationName } = useContext(GLobalContext);
 
   console.log(allLocations);
   return (

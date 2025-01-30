@@ -1,4 +1,4 @@
-import React, { useContext, useState, useTransition } from "react";
+import { useContext, useState } from "react";
 import MainRickMortyPic from "../../assets/SVGS/rick-and-morty-main-logo.svg";
 import { GLobalContext } from "../../Providers/Global/GlobalContext";
 import { PaginationComp } from "../../Components/Pagination/PaginationComp";
@@ -8,7 +8,6 @@ import { gendersArr, liveStatusArr } from "../../utils/Data/Data";
 import { TSingleUser } from "../../utils/@types/@types";
 import { Modal, Button } from "antd";
 import { useNavigate } from "react-router-dom";
-import { EnterCharacterPage } from "../EnterCharacterPage/EnterCharacterPage";
 
 export const Home = () => {
   const {
@@ -23,7 +22,7 @@ export const Home = () => {
     // getAllCharactersFunction,
     characterName,
   } = useContext(GLobalContext);
-  const [charactersPerPage, setCharactersPerPage] = useState<number>(6);
+  const [charactersPerPage] = useState<number>(6);
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState<number>(1);
   const lastItemIndex = currentPage * charactersPerPage;
@@ -31,7 +30,7 @@ export const Home = () => {
   const [redResetStatus, setRedResetStatus] = useState<boolean>(false);
   const currentItems = allCharacters.slice(startIndex, lastItemIndex);
   const { darkModeStatus } = useContext(GLobalContext);
-  const [key, setKey] = useState<string>("");
+  // const [key, setKey] = useState<string>("");
   const [selectorModalStatus, setSelectorModalStatus] =
     useState<boolean>(false);
 

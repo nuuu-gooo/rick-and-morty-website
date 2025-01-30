@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { GLobalContext } from "../../../Providers/Global/GlobalContext";
 
 export const Footeer1 = () => {

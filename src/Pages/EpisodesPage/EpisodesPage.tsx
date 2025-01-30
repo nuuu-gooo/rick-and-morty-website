@@ -1,12 +1,12 @@
-import React, { useContext, useState } from "react";
+import { useContext } from "react";
 import EpisodesSVG from "../../assets/SVGS/episodes-rick-and-morty.svg";
 import { GLobalContext } from "../../Providers/Global/GlobalContext";
-import { Card } from "antd";
+
 import { SingleEpisodeComp } from "./SingleEpisodeComp/SingleEpisodeComp";
 
 export const EpisodesPage = () => {
   const { allEpisodes } = useContext(GLobalContext);
-  const { setEpisodeName, episodeName } = useContext(GLobalContext);
+  const { setEpisodeName } = useContext(GLobalContext);
 
   return (
     <div className="flex justify-center items-center flex-col">

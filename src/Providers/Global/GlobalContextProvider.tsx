@@ -1,7 +1,7 @@
-import React, { PropsWithChildren, useState, useEffect } from "react";
+import { PropsWithChildren, useState, useEffect } from "react";
 import { GLobalContext } from "./GlobalContext";
 import { public_axios } from "../../utils/API/publicAxios";
-import { Navigate, useAsyncError, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const GlobalContextProvider = ({ children }: PropsWithChildren) => {
   const [allCharacters, setAlLCharacters] = useState<any[]>([]);

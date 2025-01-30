@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams, Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { public_axios } from "../../../utils/API/publicAxios";
 import { Card } from "antd";
 import { FaArrowRight } from "react-icons/fa6";
 import { rickAndMortyCharacters } from "../../../utils/Data/Data";
 
 export const DynamicEpisode = () => {
-  const [dynamicEpisode, setDynamicEpisode] = useState([]);
+  const [dynamicEpisode, setDynamicEpisode] = useState<any>([]);
   const { episodeId } = useParams();
 
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ export const DynamicEpisode = () => {
   return (
     <div className="flex justify-center items-center flex-col mt-[3%]">
       <div className="title flex justify-between items-center  flex-col">
+        //@ts-ignore
         <h1>{dynamicEpisode?.name}</h1>
         <h3 className="mt-5 text-center">Cast:</h3>
       </div>
@@ -43,6 +44,7 @@ export const DynamicEpisode = () => {
           <div className="info flex items-center justify-between ">
             <div className="episode flex-col flex items-start mb-[3%]">
               <h3>Episode</h3>
+
               <p className="mt-2">{dynamicEpisode.episode}</p>
             </div>
             <div className="episode-date flex-col flex items-start mb-[3%]">
@@ -54,7 +56,6 @@ export const DynamicEpisode = () => {
             {rickAndMortyCharacters[randomCharacterNumber].characterArr.map(
               (character) => {
                 return (
-                  // <Link className="no-underline hover:underline">
                   <Card
                     onClick={() =>
                       navigate(`/singleCharacter/${character.filterName}`)
@@ -66,7 +67,6 @@ export const DynamicEpisode = () => {
                   >
                     <p>{character.name}</p>
                   </Card>
-                  // </Link>
                 );
               }
             )}
