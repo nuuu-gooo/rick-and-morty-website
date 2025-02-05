@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 //@ts-ignore
 export const SingleLocationComp = ({ singleLocation }): any => {
   const navigate = useNavigate();
-  console.log(singleLocation);
+  // console.log(singleLocation);
 
   return (
     <Card

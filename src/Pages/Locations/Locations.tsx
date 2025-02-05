@@ -6,7 +6,6 @@ import SingleLocationComp from "./SingleLocation";
 export const Locations = () => {
   const { allLocations, setLocationName } = useContext(GLobalContext);
 
-  console.log(allLocations);
   return (
     <div className="flex justify-center items-center flex-col">
       <div className="mt-3 flex justify-center items-center flex-col">
