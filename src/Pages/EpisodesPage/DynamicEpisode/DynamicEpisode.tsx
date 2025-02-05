@@ -28,7 +28,6 @@ export const DynamicEpisode = () => {
   return (
     <div className="flex justify-center items-center flex-col mt-[3%]">
       <div className="title flex justify-between items-center  flex-col">
-        //@ts-ignore
         <h1>{dynamicEpisode?.name}</h1>
         <h3 className="mt-5 text-center">Cast:</h3>
       </div>

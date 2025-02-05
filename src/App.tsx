@@ -43,6 +43,7 @@ function App() {
             element={<DynamicEpisodePage />}
           />
           <Route path="/allLocationsPage" element={<LocationsComp />} />
+          <Route path="/allLocations/:singleLocationId" />
         </Route>
       </Routes>
     </Suspense>

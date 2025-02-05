@@ -3,6 +3,7 @@ import { Card } from "antd";
 //@ts-ignore
 export const SingleLocationComp = ({ singleLocation }): any => {
   console.log(singleLocation);
+
   return (
     <Card
       key={singleLocation.id}
