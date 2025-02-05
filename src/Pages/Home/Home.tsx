@@ -30,11 +30,8 @@ export const Home = () => {
   const [redResetStatus, setRedResetStatus] = useState<boolean>(false);
   const currentItems = allCharacters.slice(startIndex, lastItemIndex);
   const { darkModeStatus } = useContext(GLobalContext);
-  // const [key, setKey] = useState<string>("");
   const [selectorModalStatus, setSelectorModalStatus] =
     useState<boolean>(false);
-
-  // const navigateToEnterCharacterPage = () => {};
 
   const closeModal = () => {
     setSelectorModalStatus(false);
@@ -81,14 +78,14 @@ export const Home = () => {
                 placeholder="Filter by Name"
                 type="text"
               />
-              <div className="absolute  z-10 w-[40%] mt-[3%] overflow-scroll h-[100px] cursor-pointer">
+              <div className="absolute   z-10 w-[40%] mt-[3%]  overflow-auto h-[100px] cursor-pointer">
                 {searchedCharacters.map((char) => {
                   return (
                     <div
                       onClick={() => {
                         navigate(`/singleCharacter/${char.name}`);
                       }}
-                      className="flex text-start flex-col bg-black text-white p-2 border-solid w-full   overflow-scroll"
+                      className="flex text-start flex-col bg-black text-white p-2  w-full   overflow-scroll"
                     >
                       <p>{char.name}</p>
                     </div>

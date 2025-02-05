@@ -9,6 +9,9 @@ function App() {
   const HomePage = lazy(() => import("./Pages/Home"));
   const SingleCharacterPage = lazy(() => import("./Pages/SingleCharacter"));
   const EpsidoesPage = lazy(() => import("./Pages/EpisodesPage"));
+  const DynamicLocation = lazy(
+    () => import("./Pages/Locations/DynamicLocation")
+  );
   const DynamicEpisodePage = lazy(
     () => import("./Pages/EpisodesPage/DynamicEpisode")
   );
@@ -43,7 +46,10 @@ function App() {
             element={<DynamicEpisodePage />}
           />
           <Route path="/allLocationsPage" element={<LocationsComp />} />
-          <Route path="/allLocations/:singleLocationId" />
+          <Route
+            path="/allLocations/:singleLocationId"
+            element={<DynamicLocation />}
+          />
         </Route>
       </Routes>
     </Suspense>

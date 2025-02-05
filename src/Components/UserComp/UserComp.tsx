@@ -3,14 +3,13 @@ import { Card } from "antd";
 import { GLobalContext } from "../../Providers/Global/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
-//@ts-ignore
 export const UserComp = ({ character }: any) => {
   const navigate = useNavigate();
   const { loadingGeneral } = useContext(GLobalContext);
   const handleOnClick = (id: string) => {
     navigate(`/singleCharacter/${id}`);
   };
-  //@ts-ignore
+
   return (
     <div>
       {loadingGeneral && (
